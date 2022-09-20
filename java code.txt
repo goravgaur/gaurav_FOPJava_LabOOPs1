@@ -1,0 +1,147 @@
+
+
+
+Main.java
+
+import java.util.*;
+
+public class Main  {
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter the department from the following \n1. Technical\n2. Admin\n3. Human Resource\n4. Legal");
+        int n = in.nextInt();
+        switch(n)
+        {
+            case 1 : Technical tech= new Technical();
+                     Employee em= new Employee();
+                     CredentialService cs= new CredentialService();
+                     String fname=em.firstName();
+                     String email = cs.generateEmailAddress(fname, em.lastName(), tech.technical());
+                     String password = cs.generatePassword();
+                     cs.showCredentials(fname, email, password);
+                      break;
+            case 2 : Admin admin= new Admin();
+                    Employee em1= new Employee();
+                    CredentialService cs1= new CredentialService();
+                    String fname1=em1.firstName();
+                    String email1 = cs1.generateEmailAddress(fname1, em1.lastName(), admin.admin());
+                    String password1 = cs1.generatePassword();
+                    cs1.showCredentials(fname1, email1, password1);
+                    break;
+            case 3 : HumanResource hr= new HumanResource();
+                     Employee em2= new Employee();
+                     CredentialService cs2= new CredentialService();
+                     String fname2=em2.firstName();
+                     String email2 = cs2.generateEmailAddress(fname2, em2.lastName(), hr.humanresource());
+                     String password2 = cs2.generatePassword();
+                     cs2.showCredentials(fname2, email2, password2);
+                     break;
+            case 4 : Legal legal= new Legal();
+		            Employee em3= new Employee();
+		            CredentialService cs3= new CredentialService();
+		            String fname3=em3.firstName();
+		            String email3 = cs3.generateEmailAddress(fname3, em3.lastName(), legal.legal());
+		            String password3 = cs3.generatePassword();
+		            cs3.showCredentials(fname3, email3, password3);
+		            break;
+            default : System.out.println("Invalid Input, Please enter again :");
+            break;
+        }
+        
+    }
+}
+ 
+
+CredentialService.java
+
+import java.util.*;
+public class CredentialService extends Main {
+     public String generatePassword() 
+     {
+                String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&stopabcdefghijklmnopqrstuvwxyz";
+                Random rnd = new Random();
+                StringBuilder sb = new StringBuilder(8);
+                for (int i = 0; i < 8; i++)
+                    sb.append(chars.charAt(rnd.nextInt(chars.length())));
+                return sb.toString();
+     }
+    public String generateEmailAddress(String f, String l, String c)
+    {
+        String email= (.."@"+c+".abc.com");
+        return email;
+    }
+    public void showCredentials(String f, String e, String p)
+    {
+        System.out.println("Dear " + f + " your generated credentials are as follows\nEmail --> " + e + "\nPassword --> " + p);
+    }
+}
+ 
+
+Employee.java
+
+import java.util.*;
+public class Employee extends Main
+{
+    Scanner sc = new Scanner(System.in);
+ public String firstName()
+ {
+    System.out.println("Enter your first name: ");
+    String firstName = sc.nextLine();
+    return firstName;
+ }
+ public String lastName()
+ {
+    System.out.println("Enter your last name: ");
+    String lastName = sc.nextLine();
+    return lastName;
+ }
+}
+ 
+
+Technical.java
+
+public class Technical extends Main{
+    public static String technical()
+    {
+      String s= "tech";
+      return s;  
+    }
+}
+ 
+
+Admin.java
+
+public class Admin extends Main{
+    public static String admin()
+    {
+      String s= "admin";
+      return s;  
+    }
+}
+ 
+
+HumanResource.java
+
+public class HumanResource extends Main {
+    public static String humanresource()
+    {
+      String s= "hr";
+      return s;  
+    }
+}
+ 
+
+Legal.java
+
+public class Legal extends Main {
+    
+ public static String legal()
+{
+  String s= "legal";
+  return s;  
+}
+}
+
+ 
+
